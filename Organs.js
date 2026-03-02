@@ -1,45 +1,43 @@
+class ParkingMachine {
+
+    constructor(payment) {
+        this.payment = payment;
+        this.minutes = 0;
+        this.cost = 0;
+        this.change = 0;
+    }
+
+    calculate() {
+
+        if (this.payment < 1) {
+            return "Minimum payment is $1 for 30 minutes.";
+        }
+
+        if (this.payment >= 3.00) {
+            this.minutes = 120;
+            this.cost = 3.50;
+        } 
+        else if (this.payment >= 1.75) {
+            this.minutes = 60;
+            this.cost = 1.75;
+        } 
+        else {
+            this.minutes = 30;
+            this.cost = 1.00;
+        }
+
+        this.change = this.payment - this.cost;
+
+        return `Parking time: ${this.minutes} minutes. Change: $${this.change.toFixed(2)}`;
+    }
+}
 
 function calculateParking() {
 
-
-        //const means this is a constant that cannot be changed
-    const payment = Number (document.getElementById("payment").value);
+    const paymentValue = Number(document.getElementById("payment").value);
     const message = document.getElementById("message");
 
-        //if the payment is less thant $1 the code stops
-    if (payment < 1) {
-        message.textContent = "minimum payment is $1 for 30mins";
-        return;
-    }
+    const machine = new ParkingMachine(paymentValue);
 
-        //creates those things
-    let minutes;
-    let cost;
-
-        //the pricing stuff
-
-        //this checks if its 1.75 for 60, if its not, its 1 for 30min
-    if (payment >= 1.75) {
-        minutes = 60;
-        cost= 1.75;
-    } else {
-        minutes = 30;
-        cost = 1.00;
-    }
-
-        //the bigger payments
-    if (payment >= 3.50) {
-        minutes = 120;
-        cost = 3.50;
-    }
-    
-    const change = payment - cost;
-
-
-        //annoying to understand but it works
-    message.textContent =
-    "parking time " + minutes + 
-    " minutes.change: $" + change.toFixed(2);
-
-
+    message.textContent = machine.calculate();
 }
