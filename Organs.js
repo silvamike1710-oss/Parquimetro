@@ -15,7 +15,7 @@ class ParkingMachine {
 
         if (this.payment >= 3.00) {
             this.minutes = 120;
-            this.cost = 3.50;
+            this.cost = 3.00;
         } 
         else if (this.payment >= 1.75) {
             this.minutes = 60;
